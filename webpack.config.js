@@ -5,31 +5,31 @@ module.exports = (env, argv) => ({
   entry: "./src/index.js",
   output: {
     path: path.resolve(__dirname, "dist"),
-    filename: "main_bundle.js"
+    filename: "main_bundle.js",
   },
   module: {
     rules: [
       {
         test: /\.(js|jsx)$/,
         exclude: /node_modules/,
-        use: "babel-loader"
+        use: "babel-loader",
       },
       {
         test: /\.css$/,
-        use: ["style-loader", "css-loader"]
-      }
-    ]
+        use: ["style-loader", "css-loader"],
+      },
+    ],
   },
   resolve: { extensions: ["*", ".js", ".jsx"] },
   plugins: [
     new HtmlWebpackPlugin({
-      template: "public/index.html"
-    })
+      template: "public/index.html",
+    }),
   ],
   devServer: {
     port: 3000,
     contentBase: path.join(__dirname, "public"),
-    historyApiFallback: true
+    historyApiFallback: true,
   },
-  devtool: argv.mode === "development" ? "cheap-eval-source-map" : "source-map"
+  devtool: argv.mode === "development" ? "cheap-eval-source-map" : "source-map",
 });

@@ -78,7 +78,7 @@
     ],
     "quotes": [
       "error",
-      "single"
+      "double"
     ],
     "valid-jsdoc": [
       "error",
