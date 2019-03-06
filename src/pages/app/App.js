@@ -1,6 +1,7 @@
 import React, { Component } from "react";
+import { Button } from "semantic-ui-react";
 
-import "./App.css";
+import "./App.scss";
 
 /**
  * @class App
@@ -15,6 +16,9 @@ class App extends Component {
     return (
       <div className="App">
         <h1>Hello, World! This is sendIT.</h1>
+        <Button secondary>
+          Button
+        </Button>
       </div>
     );
   }
