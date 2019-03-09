@@ -1,6 +1,5 @@
-import React, { Component } from "react";
-
-import "./App.css";
+import React, { Component, Fragment } from "react";
+import HomePage from "../Homepage/HomePage";
 
 /**
  * @class App
@@ -13,9 +12,9 @@ class App extends Component {
    */
   render() {
     return (
-      <div className="App">
-        <h1>Hello, World! This is sendIT.</h1>
-      </div>
+      <Fragment>
+        <HomePage />
+      </Fragment>
     );
   }
 }
