@@ -5,7 +5,7 @@ module.exports = (env, argv) => ({
   entry: "./src/index.js",
   output: {
     path: path.resolve(__dirname, "dist"),
-    filename: "main_bundle.js",
+    filename: "main.bundle.js",
   },
   module: {
     rules: [
@@ -15,8 +15,16 @@ module.exports = (env, argv) => ({
         use: "babel-loader",
       },
       {
-        test: /\.css$/,
-        use: ["style-loader", "css-loader"],
+        test: /\.(css|scss|sass)$/,
+        use: ["style-loader", "css-loader", "sass-loader"],
+      },
+      {
+        test: /\.(png|jpg|gif|woff|woff2|eot|ttf|otf|svg)$/,
+        use: [
+          {
+            loader: "file-loader",
+          },
+        ],
       },
     ],
   },
