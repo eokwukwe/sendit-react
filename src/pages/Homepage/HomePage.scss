@@ -1,5 +1,70 @@
+@import url("https://fonts.googleapis.com/css?family=Raleway:300,400,600");
+
 .home-page {
-  margin: 1rem;
-  font-family: Arial, Helvetica, sans-serif;
-  color: red;
+  min-height: 100vh;
+  background-image: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)),
+    url("../../../public/assets/parceld.jpg");
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  font-family: "Raleway", sans-serif;
+
+  h1 {
+    font-size: 50px;
+    line-height: 1.2;
+    color: #256188;
+    font-family: "Raleway", sans-serif;
+  }
+
+  p {
+    margin: 0;
+    font-size: 20px;
+    color: white;
+  }
+}
+
+.signup-index {
+  border: 1px solid #244062;
+  border-radius: 0.2rem;
+  padding: 0.3rem 1rem;
+  background: #256188;
+  color: white;
+  font-size: 1.1rem;
+  font-weight: 600;
+}
+
+.signup-index:hover {
+  text-decoration: none;
+  color: white;
+  background: #244062;
+  border: 1px dotted white;
+}
+
+@media (max-width: 568px) {
+  .home-page {
+    background-image: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)),
+      url("../../../public/assets/parcel_small.jpg");
+    background-position: left;
+
+    h1 {
+      font-size: 39px;
+    }
+  }
+}
+
+@media (max-width: 1863px) {
+  .home-page {
+    max-width: 100%;
+  }
+}
+
+@media (min-width: 1864px) {
+  .home-page {
+    max-width: 90%;
+  }
 }
