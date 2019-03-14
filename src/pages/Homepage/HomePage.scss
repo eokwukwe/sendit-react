@@ -1,6 +1,7 @@
-@import url("https://fonts.googleapis.com/css?family=Raleway:300,400,600");
+@import "../../../public/assets/styles/index.scss";
 
 .home-page {
+  width: 100%;
   min-height: 100vh;
   background-image: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)),
     url("../../../public/assets/parceld.jpg");
@@ -12,37 +13,58 @@
   justify-content: center;
   align-items: center;
   text-align: center;
-  font-family: "Raleway", sans-serif;
+  font-family: $default_font;
 
   h1 {
-    font-size: 50px;
+    font-size: 3.125rem;
     line-height: 1.2;
-    color: #256188;
-    font-family: "Raleway", sans-serif;
+    color: $blue;
+    font-family: $default_font;
+    font-weight: 600;
   }
 
   p {
     margin: 0;
     font-size: 20px;
-    color: white;
+    color:$text_white;
   }
 }
 
 .signup-index {
-  border: 1px solid #244062;
+  border: 1px solid $dark_blue;
   border-radius: 0.2rem;
   padding: 0.3rem 1rem;
-  background: #256188;
-  color: white;
+  background: $blue;
+  color: $text_white;
   font-size: 1.1rem;
   font-weight: 600;
 }
 
 .signup-index:hover {
   text-decoration: none;
-  color: white;
-  background: #244062;
-  border: 1px dotted white;
+  color: $text_white;
+  background: $dark_blue;
+  border: 1px dotted $text_white;
+}
+
+.brand {
+  color: $text_white;
+  font-size: 2.2rem;
+  font-family: $default_font;
+  font-weight: 600;
+}
+
+.btn-nav__home {
+  border: 2.2px solid $blue;
+  color: $text_white;
+  padding: 0.28rem 1rem !important;
+  font-weight: 400;
+
+  &:hover {
+    color: $text_white;
+    opacity: 0.9;
+    background-color: $blue;
+  }
 }
 
 @media (max-width: 568px) {
