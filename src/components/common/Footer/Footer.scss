@@ -1,0 +1,10 @@
+@import "../../../../public/assets/styles/base.scss";
+
+.footer {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: $blue;
+  color: $text-white;
+  height: 42px;
+}

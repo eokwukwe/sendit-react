@@ -1,10 +1,10 @@
-@import "../../../public/assets/styles/index.scss";
+@import "../../../public/assets/styles/base.scss";
 
 .home-page {
   width: 100%;
   min-height: 100vh;
   background-image: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)),
-    url("../../../public/assets/parceld.jpg");
+    url("../../../public/assets/images/parceld.jpg");
   background-position: center;
   background-repeat: no-repeat;
   background-size: cover;
@@ -13,55 +13,64 @@
   justify-content: center;
   align-items: center;
   text-align: center;
-  font-family: $default_font;
+  font-family: $default-font;
 
   h1 {
     font-size: 3.125rem;
     line-height: 1.2;
     color: $blue;
-    font-family: $default_font;
+    font-family: $default-font;
     font-weight: 600;
   }
 
   p {
     margin: 0;
     font-size: 20px;
-    color:$text_white;
+    color:$text-white;
   }
 }
 
+.navbar__home {
+  padding-top: 0;
+  padding-bottom: 0;
+}
+
 .signup-index {
-  border: 1px solid $dark_blue;
+  border: 1px solid $dark-blue;
   border-radius: 0.2rem;
   padding: 0.3rem 1rem;
   background: $blue;
-  color: $text_white;
+  color: $text-white;
   font-size: 1.1rem;
   font-weight: 600;
 }
 
 .signup-index:hover {
   text-decoration: none;
-  color: $text_white;
-  background: $dark_blue;
-  border: 1px dotted $text_white;
+  color: $text-white;
+  background: $dark-blue;
 }
 
 .brand {
-  color: $text_white;
+  color: $text-white;
   font-size: 2.2rem;
-  font-family: $default_font;
+  font-family: $default-font;
   font-weight: 600;
+  
+  &:hover {
+    text-decoration: none;
+    color: $text-white
+  }
 }
 
 .btn-nav__home {
   border: 2.2px solid $blue;
-  color: $text_white;
-  padding: 0.28rem 1rem !important;
+  color: $text-white;
+  padding: 0.2rem 0.7rem !important;
   font-weight: 400;
 
   &:hover {
-    color: $text_white;
+    color: $text-white;
     opacity: 0.9;
     background-color: $blue;
   }
@@ -70,7 +79,7 @@
 @media (max-width: 568px) {
   .home-page {
     background-image: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)),
-      url("../../../public/assets/parcel_small.jpg");
+      url("../../../public/assets/images/parcel_small.jpg");
     background-position: left;
 
     h1 {

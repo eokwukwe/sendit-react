@@ -1,7 +1,54 @@
-@import url("https://fonts.googleapis.com/css?family=Raleway:300,400,600");
+@import "./base.scss";
 
+.main {
+  min-height: calc(100vh - 40px);
+  padding: 3.4rem 2rem 2rem;
+}
 
-$blue: #256188;
-$text_white: #fff;
-$dark_blue: #244062;
-$default_font: "Raleway", sans-serif;
+.main__auth {
+  background-color: $light-blue;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.navbar-auth {
+  background-color: $blue;
+  padding-top: 0;
+  padding-bottom: 0;
+}
+
+.card__auth {
+  max-width: 500px;
+}
+
+.card-header__auth {
+  background-color: $dark-grey;
+  color: $blue;
+  font-size: 1.5rem;
+  padding: 0.4rem 0;
+}
+
+.card-footer__auth {
+  padding: 0.4rem 0;
+
+  a {
+    color: $blue;
+  }
+}
+
+.btn__auth {
+  background-color: $blue;
+  color: $text-white;
+
+  &:hover {
+    color: $text-white;
+    background-color: $dark-blue;
+  }
+}
+
+@media (max-width: 400px) {
+  .main {
+    padding: 3.4rem 0.6rem 0.6rem;
+  }
+}
