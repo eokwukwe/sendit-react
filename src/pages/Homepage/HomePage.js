@@ -1,8 +1,6 @@
-import React from "react";
-import {
-  Navbar, NavbarBrand, NavItem, Nav, NavLink, Container,
-} from "reactstrap";
-import "./HomePage.scss";
+import React from "react"
+import { Link } from "react-router-dom"
+import "./HomePage.scss"
 
 /**
  * @description Renders the Homepage
@@ -10,32 +8,32 @@ import "./HomePage.scss";
  */
 const HomePage = () => (
   <React.Fragment>
-    <Navbar fixed="top">
-      <Container>
-        <NavbarBrand className="brand" href="/">
+    <nav className="navbar fixed-top navbar__home">
+      <div className="container">
+        <Link className="brand" to="/">
           SendIT
-        </NavbarBrand>
-        <Nav className="ml-auto" navbar>
-          <NavItem>
-            <NavLink className="btn btn-nav__home" href="/login">
+        </Link>
+        <ul className="navbar-nav ml-auto">
+          <li className="nav-item">
+            <Link className="btn btn-nav__home" to="/login">
               Login
-            </NavLink>
-          </NavItem>
-        </Nav>
-      </Container>
-    </Navbar>
+            </Link>
+          </li>
+        </ul>
+      </div>
+    </nav>
     <div className="home-page">
       <h1>Welcome to SendIT</h1>
       <p>The easiest and fastest means to deliver your parcel.</p>
       <p>
         Simply{" "}
-        <a className="signup-index" href="signup.html">
+        <Link className="signup-index" to="/signup">
           Sign Up
-        </a>{" "}
+        </Link>{" "}
         and start sending.
       </p>
     </div>
   </React.Fragment>
-);
+)
 
-export default HomePage;
+export default HomePage

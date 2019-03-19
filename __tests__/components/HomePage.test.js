@@ -1,21 +1,16 @@
-import React from "react";
-import { shallow } from "enzyme";
-// import toJson from "enzyme-to-json";
-import HomePage from "../../src/pages/Homepage/HomePage";
+import React from "react"
+import { shallow } from "enzyme"
+import HomePage from "../../src/pages/Homepage/HomePage"
 
-describe("<App />", () => {
+describe("<Home page />", () => {
   describe("render()", () => {
-    it("renders the component without crashing", () => {
-      shallow(<HomePage />);
-    });
+    it("should render the component without crashing", () => {
+      shallow(<HomePage />)
+    })
 
-    it("renders a <div />", () => {
-      const wrapper = shallow(<HomePage />);
-      expect(wrapper.find("div").length).toEqual(1);
-    });
-
-    // it("Opens and closes the accordion", () => {
-    //   const wrapper = shallow(<HomePage />);
-    // });
-  });
-});
+    it("should render a <div />", () => {
+      const wrapper = shallow(<HomePage />)
+      expect(wrapper.find("div").length).toEqual(2)
+    })
+  })
+})

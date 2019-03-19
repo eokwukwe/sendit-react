@@ -1,0 +1,12 @@
+@import "../../../../public/assets/styles/base.scss";
+
+.btn-nav__auth {
+  border: 1px solid $text-white;
+  color: $text-white;
+  padding: 0.2rem 0.7rem !important;
+
+  &:hover {
+    color: $text-white;
+    background-color: $dark-blue;
+  }
+}

@@ -54,6 +54,10 @@
       2
     ],
     "new-cap": "error",
+    "comma-dangle": [
+      "error",
+      "never"
+    ],
     "no-param-reassign": "off",
     "no-trailing-spaces": "warn",
     "no-underscore-dangle": "error",
@@ -74,7 +78,8 @@
     ],
     "semi": [
       "error",
-      "always"
+      "never",
+      {"beforeStatementContinuationChars": "any"}
     ],
     "quotes": [
       "error",
