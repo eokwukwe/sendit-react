@@ -1,8 +1,8 @@
 import React from "react"
 import { Link } from "react-router-dom"
-import "./SignedOutLink.scss"
+import "./SignedOutMenu.scss"
 
-const SignedOutLink = () => (
+const SignedOutMenu = () => (
   <nav className="navbar fixed-top navbar-auth">
     <div className="container">
       <Link className="brand" to="/">
@@ -19,4 +19,4 @@ const SignedOutLink = () => (
   </nav>
 )
 
-export default SignedOutLink
+export default SignedOutMenu

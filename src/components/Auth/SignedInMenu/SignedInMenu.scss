@@ -1,0 +1,22 @@
+@import "../../../../public/assets/styles/base.scss";
+
+.navbar-nav {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+}
+
+.nav-item {
+  margin: 0 5px;
+}
+
+.dropdown-menu {
+  min-width: 2rem;
+  a {
+    color: $dark-blue;
+
+    &:hover {
+      text-decoration: none;
+    }
+  }
+}
