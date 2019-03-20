@@ -1,9 +1,9 @@
 import React, { useState } from "react"
 import { Link } from "react-router-dom"
 import "./SignUp.scss"
-import SignedOutLink from "../../components/Auth/SignedOutLink/SignedOutLink"
-import Footer from "../../components/common/Footer/Footer"
-import Input from "../../components/common/Input/Input"
+import SignedOutMenu from "../../../components/Auth/SignedOutMenu/SignedOutMenu"
+import Footer from "../../../components/common/Footer/Footer"
+import Input from "../../../components/common/Input/Input"
 
 export const SignUp = () => {
   const initialFormData = {
@@ -31,7 +31,7 @@ export const SignUp = () => {
   }
   return (
     <React.Fragment>
-      <SignedOutLink />
+      <SignedOutMenu />
       <div className="main main__auth">
         <div className="card shadow card__auth">
           <h2 className="card-header text-center card-header__auth">Sign Up</h2>
@@ -82,7 +82,7 @@ export const SignUp = () => {
                 Password must be at least 6 characters with at least 1 uppercase
                 1 lowercase and 1 special character (#?!@$%^&*-.)
               </small>
-              <input type="submit" className="btn btn-block btn__auth mt-3" />
+              <input type="submit" value="Sign up" className="btn btn-block btn__auth mt-3" />
             </form>
           </div>
           <div className="card-footer text-muted text-center card-footer__auth">
