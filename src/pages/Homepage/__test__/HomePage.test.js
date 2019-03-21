@@ -1,6 +1,6 @@
 import React from "react"
 import { shallow } from "enzyme"
-import HomePage from "../../src/pages/Homepage/HomePage"
+import HomePage from "../HomePage"
 
 describe("<Home page />", () => {
   describe("render()", () => {

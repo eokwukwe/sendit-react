@@ -1,98 +1,150 @@
-import React, { useState } from "react"
-import { Link } from "react-router-dom"
+import React, { Component } from "react"
+import { connect } from "react-redux"
+import { Link, withRouter } from "react-router-dom"
+import PropTypes from "prop-types"
+
 import "./SignUp.scss"
 import SignedOutMenu from "../../../components/Auth/SignedOutMenu/SignedOutMenu"
 import Footer from "../../../components/common/Footer/Footer"
 import Input from "../../../components/common/Input/Input"
+import { registerUser } from "../../../actions/auth/authActions"
 
-export const SignUp = () => {
-  const initialFormData = {
-    firstname: "",
-    lastname: "",
-    email: "",
-    password: ""
+/**
+ * @description Renders the Homepage
+ * @param {object} e DOM event object
+ * @return {JSX} - returns the page JSX
+ */
+export class SignUp extends Component {
+  state = {
+    userData: {
+      firstName: "",
+      lastName: "",
+      userEmail: "",
+      password: ""
+    },
+    errors: {}
+  };
+
+  /**
+   * @description - Update the errors state when the user
+   * enters an invalid data
+   * @param {*} prevProps
+   * @returns {void}
+   */
+  componentDidUpdate(prevProps) {
+    if (prevProps.errors !== this.props.errors) {
+      this.setState({ errors: this.props.errors })
+    }
   }
 
-  const [formData, setFormData] = useState(initialFormData)
+  onChange = (e) => {
+    const { name, value } = e.target
+    const userData = { ...this.state.userData }
+    userData[name] = value
+    this.setState({ userData })
+  };
 
-  const onChange = e => setFormData({
-    ...formData,
-    [e.target.name]: e.target.value
-  })
-
-  const {
-    firstname, lastname, email, password
-  } = formData
-
-  const onSubmit = (e) => {
+  onSubmit = (e) => {
     e.preventDefault()
-    console.log(formData)
-    setFormData(initialFormData)
-  }
-  return (
-    <React.Fragment>
-      <SignedOutMenu />
-      <div className="main main__auth">
-        <div className="card shadow card__auth">
-          <h2 className="card-header text-center card-header__auth">Sign Up</h2>
-          <div className="card-body">
-            <form onSubmit={onSubmit}>
-              <Input
-                placeholder="First name"
-                name="firstname"
-                type="text"
-                icon="fas fa-user"
-                value={firstname}
-                onChange={onChange}
-                // error={errors.name}
-              />
+    this.props.registerUser(this.state.userData, this.props.history)
+  };
 
-              <Input
-                placeholder="Last name"
-                name="lastname"
-                type="text"
-                icon="fas fa-user"
-                value={lastname}
-                onChange={onChange}
-                // error={errors.email}
-              />
+  /**
+   * @returns {JSX} - Sign up Template
+   */
+  render() {
+    const {
+      userData: {
+        firstName, lastName, userEmail, password
+      },
+      errors
+    } = this.state
 
-              <Input
-                placeholder="Email Address"
-                name="email"
-                type="email"
-                icon="fas fa-at"
-                value={email}
-                onChange={onChange}
-                // error={errors.email}
-              />
+    return (
+      <React.Fragment>
+        <SignedOutMenu link={"login"} />
+        <div className="main main__auth">
+          <div className="card shadow card__auth">
+            <h2 className="card-header text-center card-header__auth">
+              Sign Up
+            </h2>
+            <div className="card-body">
+              <form onSubmit={this.onSubmit}>
+                <Input
+                  placeholder="First name"
+                  name="firstName"
+                  type="text"
+                  icon="fas fa-user"
+                  value={firstName}
+                  onChange={this.onChange}
+                  error={errors.firstName}
+                />
 
-              <Input
-                placeholder="Password"
-                name="password"
-                type="password"
-                icon="fas fa-lock"
-                value={password}
-                onChange={onChange}
-                // error={errors.password}
-                info="Password must be at least 6 characters with at least 1 uppercase 1
+                <Input
+                  placeholder="Last name"
+                  name="lastName"
+                  type="text"
+                  icon="fas fa-user"
+                  value={lastName}
+                  onChange={this.onChange}
+                  error={errors.lastName}
+                />
+
+                <Input
+                  placeholder="Email Address"
+                  name="userEmail"
+                  type="email"
+                  icon="fas fa-at"
+                  value={userEmail}
+                  onChange={this.onChange}
+                  error={errors.userEmail || errors.message}
+                />
+
+                <Input
+                  placeholder="Password"
+                  name="password"
+                  type="password"
+                  icon="fas fa-lock"
+                  value={password}
+                  onChange={this.onChange}
+                  error={errors.password}
+                  info="Password must be at least 6 characters with at least 1 uppercase 1
               lowercase and 1 special character (#?!@$%^&*-.)"
-              />
-              <small className="form-text text-muted">
-                Password must be at least 6 characters with at least 1 uppercase
-                1 lowercase and 1 special character (#?!@$%^&*-.)
-              </small>
-              <input type="submit" value="Sign up" className="btn btn-block btn__auth mt-3" />
-            </form>
-          </div>
-          <div className="card-footer text-muted text-center card-footer__auth">
-            Already registered? <Link to="/login">Login</Link>
+                />
+                <small className="form-text text-muted">
+                  Password must be at least 6 characters with at least 1
+                  uppercase 1 lowercase and 1 special character (#?!@$%^&*-.)
+                </small>
+                <input
+                  type="submit"
+                  value="Sign up"
+                  className="btn btn-block btn__auth mt-3"
+                />
+              </form>
+            </div>
+            <div className="card-footer text-muted text-center card-footer__auth">
+              Already registered? <Link to="/login">Login</Link>
+            </div>
           </div>
         </div>
-      </div>
-      <Footer />
-    </React.Fragment>
-  )
+        <Footer />
+      </React.Fragment>
+    )
+  }
 }
 
-export default SignUp
+SignUp.propTypes = {
+  registerUser: PropTypes.func.isRequired,
+  auth: PropTypes.object.isRequired,
+  errors: PropTypes.object.isRequired
+}
+
+const mapStateToProps = state => ({
+  auth: state.auth,
+  errors: state.errors
+})
+
+export default connect(
+  mapStateToProps,
+  { registerUser }
+)(withRouter(SignUp))
