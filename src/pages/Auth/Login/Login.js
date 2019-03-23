@@ -8,7 +8,7 @@ import SignedOutMenu from "../../../components/Auth/SignedOutMenu/SignedOutMenu"
 import Footer from "../../../components/common/Footer/Footer"
 import Input from "../../../components/common/Input/Input"
 import "./Login.scss"
-import { loginUser } from "../../../actions/auth/authActions"
+import { loginUser } from "../../../actions/authActions"
 
 /**
  * @description Renders the Homepage
@@ -49,11 +49,11 @@ export class Login extends Component {
 
   onSubmit = (e) => {
     e.preventDefault()
-    this.props.loginUser(this.state.loginData)
+    this.props.loginUser(this.state.loginData, this.props.history)
   };
 
   /**
-   * @returns {JSX} - Sign up Template
+   * @returns {JSX} - Login Template
    */
   render() {
     const {
@@ -64,7 +64,7 @@ export class Login extends Component {
       <React.Fragment>
         <SignedOutMenu link={"sign up"} />
         <div className="main main__auth">
-          <div className="card shadow card__auth card__auth--login">
+          <div className="card card__auth card__auth--login">
             <h2 className="card-header text-center card-header__auth">Login</h2>
             <div className="card-body">
               <form onSubmit={this.onSubmit}>
@@ -116,7 +116,7 @@ Login.propTypes = {
   errors: PropTypes.object.isRequired
 }
 
-const mapStateToProps = state => ({
+export const mapStateToProps = state => ({
   auth: state.auth,
   errors: state.errors
 })

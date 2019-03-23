@@ -1,3 +1,9 @@
+@import "../../../../public/assets/styles/base.scss";
+
+.card {
+  box-shadow: $shadow
+}
+
 .card__auth--login {
   width: 500px !important;
 }

@@ -1,0 +1,27 @@
+@import "../../../../public/assets/styles/base.scss";
+
+.accordion {
+  border: 1px solid $blue;
+  border-radius: 0.2rem;
+    box-shadow: $shadow;
+}
+
+.order-card {
+    border-radius: 0.2rem !important;
+  
+}
+
+.order-collapse {
+  border-top: 1px solid $dark-blue;
+}
+
+.btn-details {
+  background-color: $blue;
+  color: $text-white;
+  padding: 0rem 0.4rem;
+
+  &:hover {
+    color: $text-white;
+    background-color: $dark-blue;
+  }
+}

@@ -3,9 +3,9 @@ import axios from "axios"
 import jwt_decode from "jwt-decode"
 // import { toastr } from "react-redux-toastr"
 
-import setAuthToken from "../../utils/setAuthToken"
-import { GET_ERRORS, SET_CURRENT_USER } from "../types"
-import { BASE_URL } from "../../utils/constants"
+import setAuthToken from "../utils/setAuthToken"
+import { GET_ERRORS, SET_CURRENT_USER } from "./types"
+import { BASE_URL } from "../utils/constants"
 
 // Set logged in user
 export const setCurrentUser = decoded => ({
@@ -19,6 +19,7 @@ export const registerUser = (userData, history) => (dispatch) => {
     .post(`${BASE_URL}/auth/signup`, userData)
     .then(() => history.push("/login"))
     .catch((err) => {
+      console.log(err.response.data)
       dispatch({
         type: GET_ERRORS,
         payload: err.response.data
@@ -27,7 +28,7 @@ export const registerUser = (userData, history) => (dispatch) => {
 }
 
 // Login - Get User Token
-export const loginUser = userData => (dispatch) => {
+export const loginUser = (userData, history) => (dispatch) => {
   axios
     .post(`${BASE_URL}/auth/login`, userData)
     .then((res) => {
@@ -41,11 +42,16 @@ export const loginUser = userData => (dispatch) => {
       const decoded = jwt_decode(token)
       // Set current user
       dispatch(setCurrentUser(decoded))
+
+      decoded.usertype === "user"
+        ? history.push("/user")
+        : history.push("/admin")
     })
-    .catch(err => dispatch({
-      type: GET_ERRORS,
-      payload: err.response.data
-    }))
+    .catch(err =>
+      dispatch({
+        type: GET_ERRORS,
+        payload: err.response.data
+      }))
 }
 
 // Log out user

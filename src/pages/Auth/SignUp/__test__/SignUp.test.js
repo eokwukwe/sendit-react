@@ -1,6 +1,6 @@
 import React from "react"
 import { shallow } from "enzyme"
-import { SignUp } from "../SignUp"
+import { SignUp, mapStateToProps } from "../SignUp"
 
 const state = {
   userData: {
@@ -11,7 +11,6 @@ const state = {
   },
   errors: {}
 }
-
 
 const props = {
   registerUser: jest.fn(),
@@ -31,6 +30,7 @@ describe("Sign up Component <SignUp />", () => {
     expect(wrapper.state()).toEqual(state)
     expect(wrapper.find("Input").length).toEqual(4)
     wrapper.instance().componentDidUpdate(prevProps)
+    expect(mapStateToProps(props).errors).toEqual({})
   })
 
   it("should prevent default event when form is submitted", () => {
@@ -45,11 +45,9 @@ describe("Sign up Component <SignUp />", () => {
 
   it("should change state if first name field is changed", () => {
     const input = wrapper.find("Input")
-    input
-      .at(0)
-      .simulate("change", {
-        target: { name: "firstName", value: "okwukwe" }
-      })
+    input.at(0).simulate("change", {
+      target: { name: "firstName", value: "okwukwe" }
+    })
     expect(wrapper.state().userData.firstName).toEqual("okwukwe")
   })
 })

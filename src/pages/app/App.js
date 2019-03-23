@@ -7,9 +7,9 @@ import ReduxToastr from "react-redux-toastr"
 
 import routes from "../routes/routes"
 import store from "../../store/configureStore"
-import HomePage from "../Homepage/HomePage"
 import setAuthToken from "../../utils/setAuthToken"
-import { setCurrentUser } from "../../actions/auth/authActions"
+import { setCurrentUser } from "../../actions/authActions"
+import ProtectedRoute from "../../components/common/ProtectedRoute/ProtectedRoute"
 
 // Check for token
 if (localStorage.jwtToken) {
@@ -41,12 +41,20 @@ class App extends Component {
           />
           <Router>
             <Switch>
-              <Route path="/" exact component={HomePage} />
-              {routes.map(route => (
+              {routes.public.map(route => (
                 <Route
-                  path={route.path}
                   key={route.name}
+                  exact={route.exact}
+                  path={route.path}
                   render={props => <route.component {...props} />}
+                />
+              ))}
+              {routes.protected.map(route => (
+                <ProtectedRoute
+                  key={route.name}
+                  exact={route.exact}
+                  path={route.path}
+                  component={route.component}
                 />
               ))}
             </Switch>
@@ -56,5 +64,4 @@ class App extends Component {
     )
   }
 }
-
 export default App

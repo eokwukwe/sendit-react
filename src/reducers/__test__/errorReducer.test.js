@@ -25,7 +25,7 @@ describe("#### errorReducer", () => {
     expect(returnedState).toEqual(action.payload)
   })
 
-  it("should return an update state when user is logged in", () => {
+  it("should return an updated state when user is logged in", () => {
     const action1 = { type: CLEAR_ERRORS }
     const returnedState = errorReducer(initialState, action1)
     expect(returnedState).toEqual({})
