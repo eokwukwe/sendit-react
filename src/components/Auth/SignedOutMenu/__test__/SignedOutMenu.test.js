@@ -1,14 +1,14 @@
 import React from "react"
 import { shallow } from "enzyme"
-import SignedInMenu from "../../src/components/Auth/SignedInMenu/SignedInMenu"
+import SignedOutMenu from "../SignedOutMenu"
 
-describe("<SignedInMenu />", () => {
+describe("<SignedOutMenu />", () => {
   it("should render the component without crashing", () => {
-    shallow(<SignedInMenu />)
+    shallow(<SignedOutMenu link={"sign up"} />)
   })
 
   it("should render a <div />", () => {
-    const wrapper = shallow(<SignedInMenu />)
+    const wrapper = shallow(<SignedOutMenu link={"sign up"} />)
     expect(wrapper.find("div").length).toEqual(1)
   })
 })

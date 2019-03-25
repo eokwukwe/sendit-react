@@ -1,6 +1,6 @@
 import React from "react"
 import { shallow } from "enzyme"
-import Input from "../../src/components/common/Input/Input"
+import Input from "../Input"
 
 const setup = (props) => {
   const defaultProps = {

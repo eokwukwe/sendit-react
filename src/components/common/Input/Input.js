@@ -20,6 +20,7 @@ const Input = ({
       name={name}
       value={value}
       onChange={onChange}
+      required
     />
     {error && <div className="invalid-feedback">{error}</div>}
   </div>
