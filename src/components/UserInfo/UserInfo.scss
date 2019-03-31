@@ -1,0 +1,60 @@
+@import "../../../public/assets/styles/base.scss";
+
+.user-info {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 0.3rem;
+}
+
+.user-name {
+  color: $blue;
+  text-shadow: 0px 0px 3px $blue;
+  text-transform: capitalize;
+}
+
+.total-users-orders {
+  color: $black;
+  font-weight: $font-bold;
+}
+
+.nav-tabs {
+  justify-content: center;
+//   border-bottom: 2px solid $blue;
+
+  a {
+    color: $black;
+    font-size: 0.8rem;
+    border-bottom: none;
+  }
+}
+
+.nav-tabs .nav-link.active {
+  color: $text-white;
+  font-weight: $font-bold;
+  border: 1px solid $dark-blue;
+  background-color: $blue;
+  border-radius: 0;
+}
+
+.user-info-tabs .nav-item {
+  margin: 0 0.1rem;
+  padding: 0.3rem 0.5rem;
+}
+
+.user-info-tabs .nav-tabs .nav-item {
+  margin: 1rem 0.1rem;
+}
+
+@media (max-width: 420px) {
+  .nav-tabs {
+    a {
+      font-size: 0.65rem;
+    }
+  }
+
+  .user-info-tabs .nav-item {
+    margin: 0;
+    padding: 0.3rem 0.2rem;
+  }
+}

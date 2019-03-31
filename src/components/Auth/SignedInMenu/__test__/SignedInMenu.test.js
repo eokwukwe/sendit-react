@@ -1,14 +1,24 @@
 import React from "react"
 import { shallow } from "enzyme"
-import SignedInMenu from "../SignedInMenu"
+import { SignedInMenu } from "../SignedInMenu"
+
+const props = {
+  logoutUser: jest.fn()
+}
+
+const mockFn = jest.fn()
 
 describe("<SignedInMenu />", () => {
+  const wrapper = shallow(<SignedInMenu {...props} />)
   it("should render the component without crashing", () => {
-    shallow(<SignedInMenu link={"login"} />)
+    shallow(<SignedInMenu {...props} />)
   })
 
   it("should render a <div />", () => {
-    const wrapper = shallow(<SignedInMenu link={"login"} />)
-    expect(wrapper.find("div").length).toEqual(1)
+    expect(wrapper.find("nav")).toBeDefined()
+  })
+
+  it("should logout user", () => {
+    wrapper.instance().handleLogout(mockFn)
   })
 })

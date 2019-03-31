@@ -1,6 +1,6 @@
 import React from "react"
 import { shallow } from "enzyme"
-import { Login } from "../Login"
+import { Login, mapStateToProps } from "../Login"
 
 const props = {
   loginUser: jest.fn(),
@@ -25,6 +25,7 @@ describe("<SignedOutLink />", () => {
     expect(wrapper.instance()).toBeInstanceOf(Login)
     expect(wrapper.state()).toEqual(state)
     wrapper.instance().componentDidUpdate(prevProps)
+    expect(mapStateToProps(props).auth).toEqual({})
   })
 
   it("should prevent default event when form is submitted", () => {

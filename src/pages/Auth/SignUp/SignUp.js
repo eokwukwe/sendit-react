@@ -7,7 +7,7 @@ import "./SignUp.scss"
 import SignedOutMenu from "../../../components/Auth/SignedOutMenu/SignedOutMenu"
 import Footer from "../../../components/common/Footer/Footer"
 import Input from "../../../components/common/Input/Input"
-import { registerUser } from "../../../actions/auth/authActions"
+import { registerUser } from "../../../actions/authActions"
 
 /**
  * @description Renders the Homepage
@@ -64,7 +64,7 @@ export class SignUp extends Component {
       <React.Fragment>
         <SignedOutMenu link={"login"} />
         <div className="main main__auth">
-          <div className="card shadow card__auth">
+          <div className="card card__auth">
             <h2 className="card-header text-center card-header__auth">
               Sign Up
             </h2>
@@ -139,7 +139,7 @@ SignUp.propTypes = {
   errors: PropTypes.object.isRequired
 }
 
-const mapStateToProps = state => ({
+export const mapStateToProps = state => ({
   auth: state.auth,
   errors: state.errors
 })

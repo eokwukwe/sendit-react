@@ -1,0 +1,18 @@
+@import "../../../../public/assets/styles/base.scss";
+
+.order-section-detail {
+  display: flex;
+  justify-content: space-between;
+  margin: 0;
+  font-size: 0.895rem;
+}
+
+span.price {
+  color: $grey;
+}
+
+@media (max-width: 767px) {
+  .order-section-detail {
+    font-size: 0.8rem;
+  }
+}

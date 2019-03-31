@@ -11,3 +11,10 @@
     background-color: $dark-blue;
   }
 }
+
+@media (max-width: 420px) {
+  .btn-nav__auth {
+    font-size: 0.8rem;
+    padding: 0.1rem 0.4rem !important;
+  }
+}

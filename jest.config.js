@@ -10,7 +10,9 @@ module.exports = {
     "src/**/*.{js,jsx}",
     "!src/index.js",
     "!src/pages/app/App.js",
-    "!src/pages/routes/routes.js"
+    "!src/pages/routes/routes.js",
+    "!src/store/configureStore.js",
+    "!src/utils/setAuthToken.js"
   ],
   moduleNameMapper: {
     "\\.(jpg|jpeg|png|gif|eot|otf|webp|svg|ttf|woff|woff2|mp4|webm|wav|mp3|m4a|aac|oga)$":
