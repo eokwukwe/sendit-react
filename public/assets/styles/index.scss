@@ -52,6 +52,7 @@
 
 .card-footer__auth {
   padding: 0.4rem 0;
+  font-size: 0.9rem;
 
   a {
     color: $blue;
@@ -62,6 +63,7 @@
   background-color: $blue;
   color: $text-white;
   font-weight: $font-bold;
+  padding: 0.25rem 0;
 
   &:hover {
     color: $text-white;

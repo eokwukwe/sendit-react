@@ -9,7 +9,6 @@ import {
 const initialState = {
   orders: [],
   userOrders: [],
-  order: {},
   loading: false
 }
 
@@ -23,7 +22,7 @@ export default (state = initialState, action) => {
   case CREATE_ORDER:
     return {
       ...state,
-      order: action.payload,
+      userOrders: [...state.userOrders, action.payload],
       loading: false
     }
   case GET_ALL_ORDERS:

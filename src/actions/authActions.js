@@ -19,7 +19,6 @@ export const registerUser = (userData, history) => (dispatch) => {
     .post(`${BASE_URL}/auth/signup`, userData)
     .then(() => history.push("/login"))
     .catch((err) => {
-      console.log(err.response.data)
       dispatch({
         type: GET_ERRORS,
         payload: err.response.data

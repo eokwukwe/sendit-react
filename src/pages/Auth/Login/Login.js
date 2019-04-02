@@ -11,7 +11,7 @@ import "./Login.scss"
 import { loginUser } from "../../../actions/authActions"
 
 /**
- * @description Renders the Homepage
+ * @description Renders the Login Page
  * @param {object} e DOM event object
  * @return {JSX} - returns the page JSX
  */

@@ -3,7 +3,15 @@ import classnames from "classnames"
 import PropTypes from "prop-types"
 
 const Input = ({
-  name, placeholder, value, error, icon, type, onChange
+  name,
+  placeholder,
+  value,
+  error,
+  icon,
+  type,
+  onChange,
+  step,
+  min
 }) => (
   <div className="input-group mb-3">
     <div className="input-group-prepend">
@@ -13,7 +21,7 @@ const Input = ({
     </div>
     <input
       type={type}
-      className={classnames("form-control form-control-md", {
+      className={classnames("form-control form-control-sm", {
         "is-invalid": error
       })}
       placeholder={placeholder}
@@ -21,6 +29,8 @@ const Input = ({
       value={value}
       onChange={onChange}
       required
+      step={step}
+      min={min}
     />
     {error && <div className="invalid-feedback">{error}</div>}
   </div>
@@ -33,7 +43,9 @@ Input.propTypes = {
   icon: PropTypes.string,
   type: PropTypes.string.isRequired,
   error: PropTypes.string,
-  onChange: PropTypes.func.isRequired
+  onChange: PropTypes.func.isRequired,
+  step: PropTypes.string,
+  min: PropTypes.string
 }
 
 Input.defaultProps = {

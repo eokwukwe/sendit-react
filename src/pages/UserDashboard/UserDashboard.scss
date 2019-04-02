@@ -1,0 +1,29 @@
+@import "../../../public/assets/styles/base.scss";
+
+.main__user {
+  position: relative;
+  background-color: $light-grey;
+  box-shadow: $shadow;
+}
+
+.btn-create-order {
+  position: absolute;
+  bottom: 5px;
+  right: 5px;
+  border: none;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  outline: none;
+  text-decoration: none;
+
+  .fa,
+  .fas {
+    font-size: 2.3rem;
+    color: $blue;
+  }
+}
+
+.btn-create-order:hover {
+  text-decoration: none;
+}

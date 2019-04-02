@@ -29,8 +29,9 @@ export const createOrder = data => (dispatch) => {
     .then((res) => {
       dispatch({
         type: CREATE_ORDER,
-        payload: res.data
+        payload: res.data.order
       })
+      toastr.success("Order created successfully")
     })
     .catch((err) => {
       dispatch({
@@ -76,12 +77,13 @@ export const getUserOrders = userId => (dispatch) => {
     })
 }
 
-export const changeOrderDestination = (parcelId, userId, address) => (dispatch) => {
+export const changeOrderDestination = (parcelId, address) => (dispatch) => {
   axios
     .put(`${BASE_URL}/parcels/${parcelId}/destination`, address)
     .then((res) => {
       dispatch({
-        type: CHANGE_ORDER_DESTINATION
+        type: CHANGE_ORDER_DESTINATION,
+        payload: res.data
       })
       toastr.success("Parcel destination has been changed")
     })
@@ -96,7 +98,7 @@ export const changeOrderDestination = (parcelId, userId, address) => (dispatch) 
 
 export const cancelOrder = parcelId => (dispatch) => {
   axios
-    .delete(`${BASE_URL}/parcels/${parcelId}/cancel`)
+    .put(`${BASE_URL}/parcels/${parcelId}/cancel`)
     .then((res) => {
       dispatch({
         type: CANCEL_ORDER,

@@ -11,7 +11,6 @@ import orderReducer from "../orderReducer"
 const initialState = {
   orders: [],
   userOrders: [],
-  order: {},
   loading: false
 }
 
@@ -28,8 +27,7 @@ describe("#### orderReducer", () => {
     expect(orderReducer(initialState, action)).toEqual({
       loading: true,
       orders: [],
-      userOrders: [],
-      order: {}
+      userOrders: []
     })
   })
 
@@ -46,28 +44,28 @@ describe("#### orderReducer", () => {
     }
     expect(orderReducer(initialState, action)).toEqual({
       loading: false,
-      order: action.payload,
-      userOrders: [],
-      orders: []
+      orders: [],
+      userOrders: [...initialState.userOrders, action.payload]
     })
   })
 
   it("should handle the GET_USER_ORDERS action", () => {
     const action = {
       type: GET_USER_ORDERS,
-      payload: {
-        name: "kdldkl",
-        title: "ndkldnd",
-        destination: "lkdflkdsflk",
-        pickup: "kdnfldkflkdsmf"
-      },
+      payload: [
+        {
+          name: "kdldkl",
+          title: "ndkldnd",
+          destination: "lkdflkdsflk",
+          pickup: "kdnfldkflkdsmf"
+        }
+      ],
       loading: false
     }
     expect(orderReducer(initialState, action)).toEqual({
       loading: false,
       orders: [],
-      userOrders: action.payload,
-      order: {}
+      userOrders: action.payload
     })
   })
 
@@ -87,14 +85,20 @@ describe("#### orderReducer", () => {
     expect(orderReducer(initialState, action)).toEqual({
       loading: false,
       orders: action.payload,
-      userOrders: [],
-      order: {}
+      userOrders: []
     })
   })
 
   it("should handle the CHANGE_ORDER_DESTINATION action", () => {
-    expect(
-      orderReducer(initialState, { type: CHANGE_ORDER_DESTINATION })
-    ).toEqual(initialState)
+    const action = {
+      type: CHANGE_ORDER_DESTINATION,
+      payload: {
+        name: "kdldkl",
+        title: "ndkldnd",
+        destination: "lkdflkdsflk",
+        pickup: "kdnfldkflkdsmf"
+      }
+    }
+    expect(orderReducer(initialState, action)).toEqual(initialState)
   })
 })
