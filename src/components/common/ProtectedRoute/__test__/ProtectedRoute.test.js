@@ -2,10 +2,12 @@ import React from "react"
 import { shallow } from "enzyme"
 // import { Route, Redirect } from "react-router-dom"
 
-import ProtectedRoute from "../ProtectedRoute"
+import ProtectedRoute, { mapStateToProps } from "../ProtectedRoute"
 
+
+const mockComponent = () => <div>This is a man</div>
 const props = {
-  component: "Component",
+  component: mockComponent,
   auth: {
     isAuthenticated: true
   },
@@ -14,10 +16,10 @@ const props = {
 
 describe("ProtectedRoute component", () => {
   it("should render component without crashing", () => {
-    shallow(
-      <ProtectedRoute {...props}>
-        {/* <Route {...props.rest} /> */}
-      </ProtectedRoute>
-    )
+    shallow(<ProtectedRoute {...props} />)
+  })
+
+  it("should check mapStateToProps", () => {
+    expect(mapStateToProps(props).auth.isAuthenticated).toEqual(true)
   })
 })

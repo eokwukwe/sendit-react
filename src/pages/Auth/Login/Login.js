@@ -9,9 +9,10 @@ import Footer from "../../../components/common/Footer/Footer"
 import Input from "../../../components/common/Input/Input"
 import "./Login.scss"
 import { loginUser } from "../../../actions/authActions"
+import Spinner from "../../../components/common/Spinner/Spinner"
 
 /**
- * @description Renders the Homepage
+ * @description Renders the Login Page
  * @param {object} e DOM event object
  * @return {JSX} - returns the page JSX
  */
@@ -21,7 +22,8 @@ export class Login extends Component {
       userEmail: "",
       password: ""
     },
-    errors: {}
+    errors: {},
+    loading: false
   };
 
   /**
@@ -32,7 +34,7 @@ export class Login extends Component {
    */
   componentDidUpdate(prevProps) {
     if (prevProps.errors !== this.props.errors) {
-      this.setState({ errors: this.props.errors })
+      this.setState({ errors: this.props.errors, loading: false })
     }
   }
 
@@ -41,6 +43,7 @@ export class Login extends Component {
    * @returns {object} - Changed state
    */
   onChange = (e) => {
+    this.setState({ errors: {} })
     const { name, value } = e.target
     const loginData = { ...this.state.loginData }
     loginData[name] = value
@@ -48,6 +51,7 @@ export class Login extends Component {
   };
 
   onSubmit = (e) => {
+    this.setState({ errors: {}, loading: true })
     e.preventDefault()
     this.props.loginUser(this.state.loginData, this.props.history)
   };
@@ -63,7 +67,8 @@ export class Login extends Component {
     return (
       <React.Fragment>
         <SignedOutMenu link={"sign up"} />
-        <div className="main main__auth">
+        <div className="main main__auth" style={{ position: "relative" }}>
+          {this.state.loading && <Spinner />}
           <div className="card card__auth card__auth--login">
             <h2 className="card-header text-center card-header__auth">Login</h2>
             <div className="card-body">

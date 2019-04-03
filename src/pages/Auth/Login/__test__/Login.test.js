@@ -12,12 +12,13 @@ const state = {
     userEmail: "",
     password: ""
   },
-  errors: {}
+  errors: {},
+  loading: false
 }
 
 const prevProps = { error: {} }
 
-describe("<SignedOutLink />", () => {
+describe("<Login />", () => {
   const wrapper = shallow(<Login {...props} />)
   it("should render the component without crashing", () => {
     shallow(<Login {...props} />)

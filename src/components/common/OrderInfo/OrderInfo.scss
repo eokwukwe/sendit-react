@@ -9,6 +9,7 @@
 
 span.price {
   color: $grey;
+  text-transform: capitalize;
 }
 
 @media (max-width: 767px) {

@@ -14,23 +14,25 @@ import {
 } from "./types"
 import { BASE_URL } from "../utils/constants"
 
-export const orderLoading = () => ({
-  type: ORDER_LOADING
-})
+// export const orderLoading = () => ({
+//   type: ORDER_LOADING
+// })
 
 export const clearErrors = () => ({
   type: CLEAR_ERRORS
 })
 
-export const createOrder = data => (dispatch) => {
+export const createOrder = (data, history) => (dispatch) => {
   dispatch(clearErrors())
   axios
     .post(`${BASE_URL}/parcels`, data)
     .then((res) => {
       dispatch({
         type: CREATE_ORDER,
-        payload: res.data
+        payload: res.data.order
       })
+      history.push("/user")
+      toastr.success("Order created successfully")
     })
     .catch((err) => {
       dispatch({
@@ -41,7 +43,6 @@ export const createOrder = data => (dispatch) => {
 }
 
 export const getAllOrders = () => (dispatch) => {
-  dispatch(orderLoading())
   axios
     .get(`${BASE_URL}/parcels`)
     .then((res) => {
@@ -59,7 +60,6 @@ export const getAllOrders = () => (dispatch) => {
 }
 
 export const getUserOrders = userId => (dispatch) => {
-  dispatch(orderLoading())
   axios
     .get(`${BASE_URL}/users/${userId}/parcels`)
     .then((res) => {
@@ -76,7 +76,7 @@ export const getUserOrders = userId => (dispatch) => {
     })
 }
 
-export const changeOrderDestination = (parcelId, userId, address) => (dispatch) => {
+export const changeOrderDestination = (parcelId, address) => (dispatch) => {
   axios
     .put(`${BASE_URL}/parcels/${parcelId}/destination`, address)
     .then((res) => {
@@ -96,7 +96,7 @@ export const changeOrderDestination = (parcelId, userId, address) => (dispatch) 
 
 export const cancelOrder = parcelId => (dispatch) => {
   axios
-    .delete(`${BASE_URL}/parcels/${parcelId}/cancel`)
+    .put(`${BASE_URL}/parcels/${parcelId}/cancel`)
     .then((res) => {
       dispatch({
         type: CANCEL_ORDER,

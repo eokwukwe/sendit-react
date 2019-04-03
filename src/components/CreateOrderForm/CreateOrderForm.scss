@@ -1,0 +1,39 @@
+@import "../../../public/assets/styles/base.scss";
+
+.main__order-form {
+  background-color: $light-blue;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: relative;
+}
+
+.card__order-form {
+  width: 500px;
+  box-shadow: $shadow;
+}
+
+.card-header__order-form {
+  background-color: $dark-grey;
+  color: $blue;
+  font-size: 1.5rem;
+  padding: 0.4rem 0;
+}
+
+.btn__order-form {
+  background-color: $blue;
+  color: $text-white;
+  font-weight: $font-bold;
+  padding: 0.25rem 0;
+
+  &:hover {
+    color: $text-white;
+    background-color: $dark-blue;
+  }
+}
+
+.card-footer__order-form {
+  padding: 0.4rem 0;
+  display: flex;
+  justify-content: center;
+}

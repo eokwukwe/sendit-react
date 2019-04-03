@@ -9,7 +9,8 @@ const state = {
     userEmail: "",
     password: ""
   },
-  errors: {}
+  errors: {},
+  loading: false
 }
 
 const props = {
