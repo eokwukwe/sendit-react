@@ -1,7 +1,6 @@
 import {
   GET_USER_ORDERS,
   GET_ALL_ORDERS,
-  ORDER_LOADING,
   CREATE_ORDER,
   CHANGE_ORDER_DESTINATION
 } from "../../actions/types"
@@ -10,25 +9,12 @@ import orderReducer from "../orderReducer"
 
 const initialState = {
   orders: [],
-  userOrders: [],
-  loading: false
+  userOrders: []
 }
 
 describe("#### orderReducer", () => {
   it("should test for the initial state", () => {
     expect(orderReducer(initialState, {})).toEqual(initialState)
-  })
-
-  it("should handle the ORDER_LOADING action", () => {
-    const action = {
-      type: ORDER_LOADING,
-      loading: true
-    }
-    expect(orderReducer(initialState, action)).toEqual({
-      loading: true,
-      orders: [],
-      userOrders: []
-    })
   })
 
   it("should handle the CREATE_ORDER action", () => {
@@ -39,13 +25,11 @@ describe("#### orderReducer", () => {
         title: "ndkldnd",
         destination: "lkdflkdsflk",
         pickup: "kdnfldkflkdsmf"
-      },
-      loading: false
+      }
     }
     expect(orderReducer(initialState, action)).toEqual({
-      loading: false,
       orders: [],
-      userOrders: [...initialState.userOrders, action.payload]
+      userOrders: []
     })
   })
 
@@ -59,11 +43,9 @@ describe("#### orderReducer", () => {
           destination: "lkdflkdsflk",
           pickup: "kdnfldkflkdsmf"
         }
-      ],
-      loading: false
+      ]
     }
     expect(orderReducer(initialState, action)).toEqual({
-      loading: false,
       orders: [],
       userOrders: action.payload
     })
@@ -79,11 +61,9 @@ describe("#### orderReducer", () => {
           destination: "lkdflkdsflk",
           pickup: "kdnfldkflkdsmf"
         }
-      ],
-      loading: false
+      ]
     }
     expect(orderReducer(initialState, action)).toEqual({
-      loading: false,
       orders: action.payload,
       userOrders: []
     })

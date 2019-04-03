@@ -14,15 +14,15 @@ import {
 } from "./types"
 import { BASE_URL } from "../utils/constants"
 
-export const orderLoading = () => ({
-  type: ORDER_LOADING
-})
+// export const orderLoading = () => ({
+//   type: ORDER_LOADING
+// })
 
 export const clearErrors = () => ({
   type: CLEAR_ERRORS
 })
 
-export const createOrder = data => (dispatch) => {
+export const createOrder = (data, history) => (dispatch) => {
   dispatch(clearErrors())
   axios
     .post(`${BASE_URL}/parcels`, data)
@@ -31,6 +31,7 @@ export const createOrder = data => (dispatch) => {
         type: CREATE_ORDER,
         payload: res.data.order
       })
+      history.push("/user")
       toastr.success("Order created successfully")
     })
     .catch((err) => {
@@ -42,7 +43,6 @@ export const createOrder = data => (dispatch) => {
 }
 
 export const getAllOrders = () => (dispatch) => {
-  dispatch(orderLoading())
   axios
     .get(`${BASE_URL}/parcels`)
     .then((res) => {
@@ -60,7 +60,6 @@ export const getAllOrders = () => (dispatch) => {
 }
 
 export const getUserOrders = userId => (dispatch) => {
-  dispatch(orderLoading())
   axios
     .get(`${BASE_URL}/users/${userId}/parcels`)
     .then((res) => {
@@ -82,8 +81,7 @@ export const changeOrderDestination = (parcelId, address) => (dispatch) => {
     .put(`${BASE_URL}/parcels/${parcelId}/destination`, address)
     .then((res) => {
       dispatch({
-        type: CHANGE_ORDER_DESTINATION,
-        payload: res.data
+        type: CHANGE_ORDER_DESTINATION
       })
       toastr.success("Parcel destination has been changed")
     })

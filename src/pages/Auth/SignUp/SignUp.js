@@ -8,6 +8,7 @@ import SignedOutMenu from "../../../components/Auth/SignedOutMenu/SignedOutMenu"
 import Footer from "../../../components/common/Footer/Footer"
 import Input from "../../../components/common/Input/Input"
 import { registerUser } from "../../../actions/authActions"
+import Spinner from "../../../components/common/Spinner/Spinner"
 
 /**
  * @description Renders the Sign Up Page
@@ -22,7 +23,8 @@ export class SignUp extends Component {
       userEmail: "",
       password: ""
     },
-    errors: {}
+    errors: {},
+    loading: false
   };
 
   /**
@@ -33,11 +35,12 @@ export class SignUp extends Component {
    */
   componentDidUpdate(prevProps) {
     if (prevProps.errors !== this.props.errors) {
-      this.setState({ errors: this.props.errors })
+      this.setState({ errors: this.props.errors, loading: false })
     }
   }
 
   onChange = (e) => {
+    this.setState({ errors: {} })
     const { name, value } = e.target
     const userData = { ...this.state.userData }
     userData[name] = value
@@ -45,6 +48,7 @@ export class SignUp extends Component {
   };
 
   onSubmit = (e) => {
+    this.setState({ errors: {}, loading: true })
     e.preventDefault()
     this.props.registerUser(this.state.userData, this.props.history)
   };
@@ -64,6 +68,7 @@ export class SignUp extends Component {
       <React.Fragment>
         <SignedOutMenu link={"login"} />
         <div className="main main__auth">
+          {this.state.loading && <Spinner />}
           <div className="card card__auth">
             <h2 className="card-header text-center card-header__auth">
               Sign Up

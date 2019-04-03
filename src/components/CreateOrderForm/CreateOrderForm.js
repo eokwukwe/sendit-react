@@ -15,6 +15,7 @@ import Input from "../common/Input/Input"
 import Footer from "../common/Footer/Footer"
 import callDistanceMatrix from "../../utils/calculateDIstance"
 import { createOrder } from "../../actions/ordersActions"
+import Spinner from "../common/Spinner/Spinner"
 
 /**
  * @description Renders the Create Order Form
@@ -42,7 +43,7 @@ export class CreateOrderForm extends Component {
    */
   componentDidUpdate(prevProps) {
     if (prevProps.errors !== this.props.errors) {
-      this.setState({ errors: this.props.errors })
+      this.setState({ errors: this.props.errors, loading: false })
     }
   }
 
@@ -67,8 +68,9 @@ export class CreateOrderForm extends Component {
    * @param {string} input form input
    * @returns {void}
    */
-  handleInput = input => (e) => {
-    this.setState({ [input]: e.target.value })
+  handleInput = (e) => {
+    this.setState({ errors: {} })
+    this.setState({ [e.target.name]: e.target.value })
   };
 
   handlePickup = (pickup) => {
@@ -93,6 +95,7 @@ export class CreateOrderForm extends Component {
    * @returns {void}
    */
   handleSubmit = async (e) => {
+    this.setState({ errors: {}, loading: true })
     e.preventDefault()
     let distance
     if (this.state.scriptLoaded) {
@@ -128,7 +131,7 @@ export class CreateOrderForm extends Component {
       price,
       description
     }
-    this.props.createOrder(orderData)
+    this.props.createOrder(orderData, this.props.history)
   };
 
   /**
@@ -149,6 +152,7 @@ export class CreateOrderForm extends Component {
             </span>
           </div>
           <input
+            required={true}
             {...getInputProps({
               placeholder: "Enter address e.g. 12 Toyin street, Ikeja Lagos",
               className: "form-control form-control-sm"
@@ -172,6 +176,7 @@ export class CreateOrderForm extends Component {
       <Fragment>
         <SignedInMenu />
         <div className="main main__order-form">
+          {this.state.loading && <Spinner />}
           <div className="card card__order-form">
             <h2 className="card-header text-center card-header__order-form">
               Create Order
@@ -188,7 +193,7 @@ export class CreateOrderForm extends Component {
                   type="text"
                   icon="fas fa-book"
                   value={description}
-                  onChange={this.handleInput("description")}
+                  onChange={this.handleInput}
                   error={errors.description}
                 />
 
@@ -198,7 +203,7 @@ export class CreateOrderForm extends Component {
                   type="number"
                   icon="fas fa-weight-hanging"
                   value={weight}
-                  onChange={this.handleInput("weight")}
+                  onChange={this.handleInput}
                   error={errors.weight}
                   step="0.1"
                   min="0"
@@ -210,7 +215,7 @@ export class CreateOrderForm extends Component {
                   type="text"
                   icon="fas fa-user"
                   value={receiver}
-                  onChange={this.handleInput("receiver")}
+                  onChange={this.handleInput}
                   error={errors.receiver}
                 />
 
@@ -218,9 +223,9 @@ export class CreateOrderForm extends Component {
                   placeholder="Receiver phone number"
                   name="phone"
                   type="text"
-                  icon="fas fa-user"
+                  icon="fas fa-phone"
                   value={phone}
-                  onChange={this.handleInput("phone")}
+                  onChange={this.handleInput}
                   error={errors.phone}
                 />
                 {this.state.scriptLoaded && (
@@ -266,15 +271,11 @@ export class CreateOrderForm extends Component {
 
 CreateOrderForm.propTypes = {
   createOrder: PropTypes.func.isRequired,
-  auth: PropTypes.object.isRequired,
-  errors: PropTypes.object.isRequired,
-  loading: PropTypes.bool
+  errors: PropTypes.object.isRequired
 }
 
 export const mapStateToProps = state => ({
-  auth: state.auth,
-  errors: state.errors,
-  loading: state.orders.loading
+  errors: state.errors
 })
 
 export default connect(

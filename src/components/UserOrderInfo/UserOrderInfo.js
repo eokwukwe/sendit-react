@@ -19,7 +19,7 @@ const UserOrderInfo = ({ order }) => (
       </div>
     </div>
     <div className="card col-sm-12 col-md-5 p-0 map-card">
-      <OrderMap lat={59.95} lng={30.33} />
+      <OrderMap lat={6.465422} lng={3.406448} />
     </div>
   </div>
 )
