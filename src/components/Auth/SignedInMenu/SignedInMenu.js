@@ -1,5 +1,6 @@
-import React, { Component } from "react"
+import React, { Component, Fragment } from "react"
 import { Link } from "react-router-dom"
+import { PropTypes } from "prop-types"
 import { NavDropdown } from "react-bootstrap"
 import { connect } from "react-redux"
 import { logoutUser } from "../../../actions/authActions"
@@ -19,6 +20,7 @@ export class SignedInMenu extends Component {
    * @returns {JSX} - SignedInMenu
    */
   render() {
+    const { usertype } = this.props.auth.user
     return (
       <nav className="navbar fixed-top navbar-auth">
         <div className="container">
@@ -39,10 +41,14 @@ export class SignedInMenu extends Component {
                   </span>
                 }
               >
-                <NavDropdown.Item as="button">
-                  <Link to="/create-order">Create Order</Link>
-                </NavDropdown.Item>
-                <NavDropdown.Divider />
+                {usertype === "user" && (
+                  <Fragment>
+                    <NavDropdown.Item as="button">
+                      <Link to="/create-order">Create Order</Link>
+                    </NavDropdown.Item>
+                    <NavDropdown.Divider />
+                  </Fragment>
+                )}
                 <NavDropdown.Item as="button" onClick={this.handleLogout}>
                   <Link to="/login">Logout</Link>
                 </NavDropdown.Item>
@@ -54,8 +60,16 @@ export class SignedInMenu extends Component {
     )
   }
 }
+SignedInMenu.propTypes = {
+  auth: PropTypes.object.isRequired,
+  logoutUser: PropTypes.func.isRequired
+}
+
+export const mapStateToProps = state => ({
+  auth: state.auth
+})
 
 export default connect(
-  null,
+  mapStateToProps,
   { logoutUser }
 )(SignedInMenu)

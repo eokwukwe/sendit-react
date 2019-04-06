@@ -3,7 +3,13 @@ import { shallow } from "enzyme"
 import { SignedInMenu } from "../SignedInMenu"
 
 const props = {
-  logoutUser: jest.fn()
+  logoutUser: jest.fn(),
+  auth: {
+    isAuthenticated: true,
+    user: {
+      usertype: "admin"
+    }
+  }
 }
 
 const mockFn = jest.fn()

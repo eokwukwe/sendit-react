@@ -38,10 +38,7 @@ export class UserDashboard extends Component {
     return (
       <React.Fragment>
         <SignedInMenu />
-        <div
-          className="container main main__user"
-          style={{ paddingTop: "60px" }}
-        >
+        <div className="container main main__user">
           {fetchedOrders}
           <Link to="/create-order" className="btn-create-order">
             <i className="fas fa-plus-circle" />
