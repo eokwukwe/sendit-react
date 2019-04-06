@@ -195,6 +195,7 @@ export class CreateOrderForm extends Component {
                   value={description}
                   onChange={this.handleInput}
                   error={errors.description}
+                  autoFocus={true}
                 />
 
                 <Input

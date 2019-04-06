@@ -11,7 +11,8 @@ const Input = ({
   type,
   onChange,
   step,
-  min
+  min,
+  autoFocus
 }) => (
   <div className="input-group mb-3">
     <div className="input-group-prepend">
@@ -31,6 +32,7 @@ const Input = ({
       required
       step={step}
       min={min}
+      autoFocus={autoFocus}
     />
     {error && <div className="invalid-feedback">{error}</div>}
   </div>
@@ -45,12 +47,14 @@ Input.propTypes = {
   error: PropTypes.string,
   onChange: PropTypes.func.isRequired,
   step: PropTypes.string,
-  min: PropTypes.string
+  min: PropTypes.string,
+  autoFocus: PropTypes.bool
 }
 
 Input.defaultProps = {
   type: "text",
-  error: ""
+  error: "",
+  autoFocus: false
 }
 
 export default Input
