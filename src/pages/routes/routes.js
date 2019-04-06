@@ -3,6 +3,8 @@ import Login from "../Auth/Login/Login"
 import UserDashboard from "../UserDashboard/UserDashboard"
 import HomePage from "../Homepage/HomePage"
 import CreateOrderForm from "../../components/CreateOrderForm/CreateOrderForm"
+import AdminDashboard from "../AdminDashboard/AdminDashboard"
+import ChangeLocation from "../../components/ChangeLocation/ChangeLocation"
 
 const routes = {
   public: [
@@ -23,6 +25,12 @@ const routes = {
       component: Login,
       name: "login",
       exact: true
+    },
+    {
+      path: "/location",
+      component: ChangeLocation,
+      name: "location",
+      exact: true
     }
   ],
   protected: [
@@ -36,6 +44,12 @@ const routes = {
       path: "/create-order",
       component: CreateOrderForm,
       name: "order",
+      exact: true
+    },
+    {
+      path: "/admin",
+      component: AdminDashboard,
+      name: "admin",
       exact: true
     }
   ]
