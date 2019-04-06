@@ -23,7 +23,7 @@ const setup = () => {
 
   return {
     wrapper: shallow(<CreateOrderForm {...props} />),
-    props, 
+    props,
     state
   }
 }
@@ -38,7 +38,6 @@ const submitEvent = {
   preventDefault: jest.fn()
 }
 
-// const suggestionsList = jest.fn()
 
 describe("CreateOrderForm component <CreateOrderForm />", () => {
   const { wrapper, props } = setup()

@@ -12,14 +12,13 @@ import PropTypes from "prop-types"
 import SignedInMenu from "../Auth/SignedInMenu/SignedInMenu"
 import Footer from "../common/Footer/Footer"
 import { changeOrderLocation } from "../../actions/ordersActions"
-import Spinner from "../common/Spinner/Spinner"
 
 /**
  * @description Renders the Create Order Form
  * @return {JSX} - returns the page JSX
  */
 export class ChangeLocation extends Component {
-  state = { address: "", scriptLoaded: false, show: false };
+  state = { address: "", scriptLoaded: false };
 
   handleScriptLoad = () => this.setState({ scriptLoaded: true });
 
@@ -79,7 +78,6 @@ export class ChangeLocation extends Component {
       <Fragment>
         <SignedInMenu />
         <div className="main main__order-form">
-          {this.state.loading && <Spinner />}
           <div className="card card__order-form">
             <h2 className="card-header text-center card-header__order-form">
               Change Location

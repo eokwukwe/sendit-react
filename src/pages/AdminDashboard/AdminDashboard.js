@@ -14,10 +14,7 @@ import InfoTable from "./InfoTable"
  * @return {JSX} - returns the page JSX
  */
 export class AdminDashboard extends Component {
-  state = { show: false, loading: true };
-
   componentDidMount = () => {
-    this.setState({ loading: false })
     this.props.getAllOrders()
   };
 
@@ -26,17 +23,6 @@ export class AdminDashboard extends Component {
    */
   render() {
     const { orders } = this.props
-    let fetchedOrders
-    if (orders.orders.length === 0 || this.state.loading) {
-      fetchedOrders = <Spinner />
-    } else {
-      fetchedOrders = (
-        <InfoTable
-          orders={orders.orders.orders}
-        />
-      )
-    }
-
     return (
       <Fragment>
         <SignedInMenu />
@@ -50,7 +36,11 @@ export class AdminDashboard extends Component {
               <span id="user-name">{orders.orders.totalOrders}</span>
             </h6>
           </div>
-          {fetchedOrders}
+          {orders.orders.length === 0 ? (
+            <Spinner />
+          ) : (
+            <InfoTable orders={orders.orders.orders} />
+          )}
         </div>
         <Footer />
       </Fragment>
@@ -59,12 +49,10 @@ export class AdminDashboard extends Component {
 }
 
 AdminDashboard.propTypes = {
-  auth: PropTypes.object.isRequired,
   orders: PropTypes.object.isRequired
 }
 
 export const mapStateToProps = state => ({
-  auth: state.auth,
   orders: state.orders
 })
 

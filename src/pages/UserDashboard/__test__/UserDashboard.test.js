@@ -1,9 +1,7 @@
 import React from "react"
 import { shallow } from "enzyme"
 import { UserDashboard, mapStateToProps } from "../UserDashboard"
-import UserInfo from "../../../components/UserInfo/UserInfo"
 
-const mockFn = jest.fn()
 const props = {
   auth: {
     isAuthenticated: false,
@@ -15,34 +13,27 @@ const props = {
     orders: [],
     userOrders: [],
     order: {},
-    loading: true
+    loading: false
   },
   getUserOrders: jest.fn()
 }
 
-const initialState = {
-  auth: {
-    isAuthenticated: false,
-    user: {}
-  }
-}
-
 describe("<UserDashboard component />", () => {
+  const wrapper = shallow(<UserDashboard {...props} />)
   it("should render the component without crashing", () => {
-    const wrapper = shallow(<UserDashboard {...props} />)
     expect(wrapper.exists()).toBe(true)
-    wrapper.instance().componentDidMount(mockFn)
-    expect(mapStateToProps(initialState).auth.user).toEqual({})
-    wrapper.setProps({
-      orders: {
-        orders: [],
-        userOrders: [],
-        order: {},
-        loading: false
-      }
-    })
+  })
 
-    const fetchedOrders = <UserInfo {...props.userOrders} {...props.auth} />
-    expect(wrapper.find(fetchedOrders)).toBeDefined()
+  it("should invoke componentDidMount method", () => {
+    const componentDidUpdateSpy = jest.spyOn(
+      wrapper.instance(),
+      "componentDidMount"
+    )
+    wrapper.instance().componentDidMount()
+    expect(componentDidUpdateSpy).toHaveBeenCalled()
+  })
+
+  it("should check mapStateToProps", () => {
+    expect(mapStateToProps(props).orders.orders).toHaveLength(0)
   })
 })
