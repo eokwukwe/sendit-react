@@ -83,6 +83,7 @@ export class SignUp extends Component {
                   value={firstName}
                   onChange={this.onChange}
                   error={errors.firstName}
+                  autoFocus={true}
                 />
 
                 <Input

@@ -81,6 +81,7 @@ export class Login extends Component {
                   value={userEmail}
                   onChange={this.onChange}
                   error={errors.userEmail}
+                  autoFocus={true}
                 />
 
                 <Input
