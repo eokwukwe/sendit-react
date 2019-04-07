@@ -28,18 +28,16 @@ export class UserDashboard extends Component {
    */
   render() {
     const { orders, auth } = this.props
-    let fetchedOrders
-    if (orders.userOrders.length === 0 || orders.loading) {
-      fetchedOrders = <Spinner />
-    } else {
-      fetchedOrders = <UserInfo userOrders={orders.userOrders} auth={auth} />
-    }
 
     return (
       <React.Fragment>
         <SignedInMenu />
         <div className="container main main__user">
-          {fetchedOrders}
+          {orders.userOrders.length === 0 || orders.loading ? (
+            <Spinner />
+          ) : (
+            <UserInfo userOrders={orders.userOrders} auth={auth} />
+          )}
           <Link to="/create-order" className="btn-create-order">
             <i className="fas fa-plus-circle" />
           </Link>

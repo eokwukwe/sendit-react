@@ -1,6 +1,6 @@
 import React from "react"
 import { shallow } from "enzyme"
-import { SignedInMenu } from "../SignedInMenu"
+import { SignedInMenu, mapStateToProps } from "../SignedInMenu"
 
 const props = {
   logoutUser: jest.fn(),
@@ -12,11 +12,9 @@ const props = {
   }
 }
 
-const mockFn = jest.fn()
-
 describe("<SignedInMenu />", () => {
   const wrapper = shallow(<SignedInMenu {...props} />)
-  it("should render the component without crashing", () => {
+  it("should render the component without crashing.", () => {
     shallow(<SignedInMenu {...props} />)
   })
 
@@ -25,6 +23,12 @@ describe("<SignedInMenu />", () => {
   })
 
   it("should logout user", () => {
-    wrapper.instance().handleLogout(mockFn)
+    const handleLogoutSpy = jest.spyOn(wrapper.instance(), "handleLogout")
+    wrapper.instance().handleLogout()
+    expect(handleLogoutSpy).toHaveBeenCalled()
+  })
+
+  it("should check mapStateToProps", () => {
+    expect(mapStateToProps(props).auth.user.usertype).toEqual("admin")
   })
 })

@@ -6,7 +6,7 @@ import format from "date-fns/format"
  * @description Renders the Order Info
  * @return {JSX} - returns the page JSX
  */
-class OrderInfoAdmin extends Component {
+export class OrderInfoAdmin extends Component {
   state = { show: false };
 
   handleShow = () => {
