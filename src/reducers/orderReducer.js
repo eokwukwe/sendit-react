@@ -2,6 +2,7 @@ import {
   GET_USER_ORDERS,
   GET_ALL_ORDERS,
   CREATE_ORDER,
+  CHANGE_ORDER_LOCATION,
   CHANGE_ORDER_DESTINATION
 } from "../actions/types"
 
@@ -25,6 +26,8 @@ export default (state = initialState, action) => {
       userOrders: action.payload
     }
   case CHANGE_ORDER_DESTINATION:
+    return state
+  case CHANGE_ORDER_LOCATION:
     return state
   default:
     return state

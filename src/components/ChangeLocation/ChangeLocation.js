@@ -9,6 +9,7 @@ import { Link, withRouter } from "react-router-dom"
 import { connect } from "react-redux"
 import PropTypes from "prop-types"
 
+import Spinner from "../common/Spinner/Spinner"
 import SignedInMenu from "../Auth/SignedInMenu/SignedInMenu"
 import Footer from "../common/Footer/Footer"
 import { changeOrderLocation } from "../../actions/ordersActions"
@@ -18,7 +19,7 @@ import { changeOrderLocation } from "../../actions/ordersActions"
  * @return {JSX} - returns the page JSX
  */
 export class ChangeLocation extends Component {
-  state = { address: "", scriptLoaded: false };
+  state = { address: "", scriptLoaded: false, loading: false };
 
   handleScriptLoad = () => this.setState({ scriptLoaded: true });
 
@@ -29,11 +30,15 @@ export class ChangeLocation extends Component {
   };
 
   handleSubmit = (e) => {
-    const { address } = this.state
+    this.setState({ loading: true })
     e.preventDefault()
-    this.props.changeOrderLocation(this.props.order.id, {
-      location: address
-    })
+    this.props.changeOrderLocation(
+      this.props.match.params.id,
+      {
+        location: this.state.address
+      },
+      this.props.history
+    )
     this.setState({ show: false, address: "" })
   };
 
@@ -67,7 +72,7 @@ export class ChangeLocation extends Component {
           {loading && <div>Loading...</div>}
           {suggestions.map(suggestion => (
             <div className="my-1" {...getSuggestionItemProps(suggestion)}>
-              <span>{suggestion.description}</span>
+              <span style={{ zIndex: "100" }}>{suggestion.description}</span>
             </div>
           ))}
         </div>
@@ -87,6 +92,7 @@ export class ChangeLocation extends Component {
                 url="https://maps.googleapis.com/maps/api/js?key=AIzaSyCUzHg3TmmcuHVRnYyAx5reBG-fVIn4wYc&libraries=places"
                 onLoad={this.handleScriptLoad}
               />
+              {this.state.loading && <Spinner />}
               <form onSubmit={this.handleSubmit}>
                 {this.state.scriptLoaded && (
                   <div className="form-group">

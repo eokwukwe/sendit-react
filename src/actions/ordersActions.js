@@ -6,7 +6,6 @@ import {
   GET_ERRORS,
   GET_USER_ORDERS,
   GET_ALL_ORDERS,
-  ORDER_LOADING,
   CLEAR_ERRORS,
   CREATE_ORDER,
   CANCEL_ORDER,
@@ -14,10 +13,6 @@ import {
   CHANGE_ORDER_LOCATION
 } from "./types"
 import { BASE_URL } from "../utils/constants"
-
-// export const orderLoading = () => ({
-//   type: ORDER_LOADING
-// })
 
 export const clearErrors = () => ({
   type: CLEAR_ERRORS
@@ -95,14 +90,15 @@ export const changeOrderDestination = (parcelId, address) => (dispatch) => {
     })
 }
 
-export const changeOrderLocation = (parcelId, address) => (dispatch) => {
+export const changeOrderLocation = (parcelId, address, history) => (dispatch) => {
   axios
-    .put(`${BASE_URL}/parcels/${parcelId}/location`, address)
+    .put(`${BASE_URL}/parcels/${parcelId}/presentLocation`, address)
     .then((res) => {
       dispatch({
         type: CHANGE_ORDER_LOCATION
       })
       toastr.success("Parcel location has been changed")
+      history.push("/admin")
     })
     .catch((err) => {
       dispatch({

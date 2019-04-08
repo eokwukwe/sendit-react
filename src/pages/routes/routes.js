@@ -25,12 +25,6 @@ const routes = {
       component: Login,
       name: "login",
       exact: true
-    },
-    {
-      path: "/location",
-      component: ChangeLocation,
-      name: "location",
-      exact: true
     }
   ],
   protected: [
@@ -50,6 +44,12 @@ const routes = {
       path: "/admin",
       component: AdminDashboard,
       name: "admin",
+      exact: true
+    },
+    {
+      path: "/update-location/:id",
+      component: ChangeLocation,
+      name: "location",
       exact: true
     }
   ]
