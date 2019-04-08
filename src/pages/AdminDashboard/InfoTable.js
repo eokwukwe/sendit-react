@@ -27,12 +27,14 @@ const InfoTable = ({ orders }) => (
             <span className="admin-icons">
               <OrderInfoAdmin order={order} />
             </span>
-            <span className="admin-icons">
-              <button className="btn btn-sm btn-success">
-                <i className="fas fa-edit" />
-              </button>
-            </span>
-            <Link to="/location">
+            <Link to={`/update-status/${order.id}`}>
+              <span className="admin-icons">
+                <button className="btn btn-sm btn-success">
+                  <i className="fas fa-edit" />
+                </button>
+              </span>
+            </Link>
+            <Link to={`/update-location/${order.id}`}>
               <span className="admin-icons">
                 <button className="btn btn-sm btn-secondary">
                   <i className="fas fa-location-arrow" />

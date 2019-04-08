@@ -4,13 +4,18 @@ import { shallow } from "enzyme"
 import { ChangeLocation, mapStateToProps } from "../ChangeLocation"
 
 const setup = () => {
-  const state = { address: "", scriptLoaded: false }
+  const state = { address: "", scriptLoaded: false, loading: false }
   const props = {
     errors: {},
     order: {
       id: 3333
     },
-    changeOrderLocation: jest.fn()
+    changeOrderLocation: jest.fn(),
+    match: {
+      params: {
+        id: 33
+      }
+    }
   }
 
   return {

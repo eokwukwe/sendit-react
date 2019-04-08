@@ -2,7 +2,8 @@ import {
   GET_USER_ORDERS,
   GET_ALL_ORDERS,
   CREATE_ORDER,
-  CHANGE_ORDER_DESTINATION
+  CHANGE_ORDER_DESTINATION,
+  CHANGE_ORDER_LOCATION
 } from "../../actions/types"
 
 import orderReducer from "../orderReducer"
@@ -71,13 +72,14 @@ describe("#### orderReducer", () => {
 
   it("should handle the CHANGE_ORDER_DESTINATION action", () => {
     const action = {
-      type: CHANGE_ORDER_DESTINATION,
-      payload: {
-        name: "kdldkl",
-        title: "ndkldnd",
-        destination: "lkdflkdsflk",
-        pickup: "kdnfldkflkdsmf"
-      }
+      type: CHANGE_ORDER_DESTINATION
+    }
+    expect(orderReducer(initialState, action)).toEqual(initialState)
+  })
+
+  it("should handle the CHANGE_ORDER_LOCATION action", () => {
+    const action = {
+      type: CHANGE_ORDER_LOCATION
     }
     expect(orderReducer(initialState, action)).toEqual(initialState)
   })
