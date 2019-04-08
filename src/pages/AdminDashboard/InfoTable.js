@@ -1,6 +1,7 @@
 import React from "react"
 import { Link } from "react-router-dom"
 import OrderInfoAdmin from "../../components/OrderInfoAdmin/OrderInfoAdmin"
+import "./AdminDashboard.scss"
 
 const InfoTable = ({ orders }) => (
   <table className="table table-striped">
@@ -27,20 +28,36 @@ const InfoTable = ({ orders }) => (
             <span className="admin-icons">
               <OrderInfoAdmin order={order} />
             </span>
-            <Link to={`/update-status/${order.id}`}>
+            {!(order.status === "delivered" || order.status === "cancelled") ? (
+              <Link to={`/update-status/${order.id}`}>
+                <span className="admin-icons">
+                  <button className="btn btn-sm btn-success">
+                    <i className="fas fa-edit" />
+                  </button>
+                </span>
+              </Link>
+            ) : (
               <span className="admin-icons">
-                <button className="btn btn-sm btn-success">
+                <button disabled className="btn btn-sm btn-success">
                   <i className="fas fa-edit" />
                 </button>
               </span>
-            </Link>
-            <Link to={`/update-location/${order.id}`}>
+            )}
+            {!(order.status === "delivered" || order.status === "cancelled") ? (
+              <Link to={`/update-location/${order.id}`}>
+                <span className="admin-icons">
+                  <button className="btn btn-sm btn-secondary">
+                    <i className="fas fa-map-marker-alt" />{" "}
+                  </button>
+                </span>
+              </Link>
+            ) : (
               <span className="admin-icons">
-                <button className="btn btn-sm btn-secondary">
-                  <i className="fas fa-location-arrow" />
+                <button disabled className="btn btn-sm btn-secondary">
+                  <i className="fas fa-map-marker-alt" />{" "}
                 </button>
               </span>
-            </Link>
+            )}
           </td>
         </tr>
       ))}
