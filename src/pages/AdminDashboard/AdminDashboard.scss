@@ -28,6 +28,11 @@
   }
 }
 
+.btn:disabled {
+  opacity: 0.65;
+  cursor: not-allowed;
+}
+
 .modal-backdrop.show {
   opacity: 0.05;
 }
