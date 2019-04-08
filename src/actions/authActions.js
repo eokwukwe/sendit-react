@@ -14,7 +14,7 @@ export const setCurrentUser = decoded => ({
 })
 
 // Register User
-export const registerUser = (userData, history) => (dispatch) => {
+export const registerUser = (userData, history) => dispatch =>
   axios
     .post(`${BASE_URL}/auth/signup`, userData)
     .then(() => history.push("/login"))
@@ -24,10 +24,9 @@ export const registerUser = (userData, history) => (dispatch) => {
         payload: err.response.data
       })
     })
-}
 
 // Login - Get User Token
-export const loginUser = (userData, history) => (dispatch) => {
+export const loginUser = (userData, history) => dispatch =>
   axios
     .post(`${BASE_URL}/auth/login`, userData)
     .then((res) => {
@@ -51,7 +50,6 @@ export const loginUser = (userData, history) => (dispatch) => {
         type: GET_ERRORS,
         payload: err.response.data
       }))
-}
 
 // Log out user
 export const logoutUser = () => (dispatch) => {
