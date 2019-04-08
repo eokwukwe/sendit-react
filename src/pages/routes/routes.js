@@ -5,6 +5,7 @@ import HomePage from "../Homepage/HomePage"
 import CreateOrderForm from "../../components/CreateOrderForm/CreateOrderForm"
 import AdminDashboard from "../AdminDashboard/AdminDashboard"
 import ChangeLocation from "../../components/ChangeLocation/ChangeLocation"
+import ChangeStatus from "../../components/ChangeStatus/ChangeStatus"
 
 const routes = {
   public: [
@@ -49,6 +50,12 @@ const routes = {
     {
       path: "/update-location/:id",
       component: ChangeLocation,
+      name: "location",
+      exact: true
+    },
+    {
+      path: "/update-status/:id",
+      component: ChangeStatus,
       name: "location",
       exact: true
     }

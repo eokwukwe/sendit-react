@@ -10,7 +10,8 @@ import {
   CREATE_ORDER,
   CANCEL_ORDER,
   CHANGE_ORDER_DESTINATION,
-  CHANGE_ORDER_LOCATION
+  CHANGE_ORDER_LOCATION,
+  CHANGE_ORDER_STATUS
 } from "./types"
 import { BASE_URL } from "../utils/constants"
 
@@ -106,6 +107,25 @@ export const changeOrderLocation = (parcelId, address, history) => (dispatch) =>
         payload: err.response.data
       })
       toastr.error("Could not change location")
+    })
+}
+
+export const changeOrderStatus = (parcelId, status, history) => (dispatch) => {
+  axios
+    .put(`${BASE_URL}/parcels/${parcelId}/status`, status)
+    .then((res) => {
+      dispatch({
+        type: CHANGE_ORDER_STATUS
+      })
+      toastr.success("Parcel status has been updated")
+      history.push("/admin")
+    })
+    .catch((err) => {
+      dispatch({
+        type: GET_ERRORS,
+        payload: err.response.data
+      })
+      toastr.error("Could not update status")
     })
 }
 
