@@ -30,6 +30,11 @@
     color: $text-white;
     background-color: $dark-blue;
   }
+
+  &:disabled {
+    opacity: 0.65;
+    cursor: not-allowed;
+  }
 }
 
 .card-footer__order-form {

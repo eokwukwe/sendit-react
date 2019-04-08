@@ -3,7 +3,8 @@ import {
   GET_ALL_ORDERS,
   CREATE_ORDER,
   CHANGE_ORDER_LOCATION,
-  CHANGE_ORDER_DESTINATION
+  CHANGE_ORDER_DESTINATION,
+  CHANGE_ORDER_STATUS
 } from "../actions/types"
 
 const initialState = {
@@ -28,6 +29,8 @@ export default (state = initialState, action) => {
   case CHANGE_ORDER_DESTINATION:
     return state
   case CHANGE_ORDER_LOCATION:
+    return state
+  case CHANGE_ORDER_STATUS:
     return state
   default:
     return state

@@ -3,7 +3,8 @@ import {
   GET_ALL_ORDERS,
   CREATE_ORDER,
   CHANGE_ORDER_DESTINATION,
-  CHANGE_ORDER_LOCATION
+  CHANGE_ORDER_LOCATION,
+  CHANGE_ORDER_STATUS
 } from "../../actions/types"
 
 import orderReducer from "../orderReducer"
@@ -80,6 +81,13 @@ describe("#### orderReducer", () => {
   it("should handle the CHANGE_ORDER_LOCATION action", () => {
     const action = {
       type: CHANGE_ORDER_LOCATION
+    }
+    expect(orderReducer(initialState, action)).toEqual(initialState)
+  })
+
+  it("should handle the CHANGE_ORDER_STATUS action", () => {
+    const action = {
+      type: CHANGE_ORDER_STATUS
     }
     expect(orderReducer(initialState, action)).toEqual(initialState)
   })
