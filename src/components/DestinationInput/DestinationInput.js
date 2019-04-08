@@ -53,6 +53,7 @@ export class DestinationInput extends Component {
     }) => (
       <div>
         <input
+          required
           autoFocus
           {...getInputProps({
             placeholder: "Search Places ...",
